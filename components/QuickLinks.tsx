@@ -107,19 +107,23 @@ export default function QuickLinks() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Link href={service.href} className="group block h-full">
-                  <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-gray-200">
-                    <CardContent className="p-6">
-                      <div
-                        className={`w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-                      >
-                        <Icon className="h-6 w-6" />
+                  <Card className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-100 bg-white shadow-sm">
+                    <CardContent className="p-5 sm:p-6">
+                      <div className="flex items-start gap-4 sm:block">
+                        <div
+                          className={`w-14 h-14 sm:w-12 sm:h-12 rounded-xl ${service.color} flex items-center justify-center sm:mb-4 group-hover:scale-110 transition-transform flex-shrink-0`}
+                        >
+                          <Icon className="h-7 w-7 sm:h-6 sm:w-6" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-base sm:text-lg text-gray-900 mb-1.5 sm:mb-2 group-hover:text-green-700 transition-colors">
+                            {service.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                            {service.description}
+                          </p>
+                        </div>
                       </div>
-                      <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {service.description}
-                      </p>
                     </CardContent>
                   </Card>
                 </Link>

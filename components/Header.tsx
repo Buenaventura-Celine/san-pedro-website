@@ -10,6 +10,8 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetHeader,
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 export default function Header() {
@@ -44,25 +46,25 @@ export default function Header() {
       }`}
       style={{
         opacity: headerOpacity,
-        boxShadow: headerShadow as any
+        boxShadow: headerShadow as unknown as string
       }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 md:h-20 items-center justify-between">
           {/* Logo Section */}
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity">
             <Image
               src="/logo.png"
               alt="San Pedro Laguna City Seal"
-              width={60}
-              height={60}
-              className="object-contain"
+              width={50}
+              height={50}
+              className="object-contain md:w-[60px] md:h-[60px]"
             />
-            <div className="hidden md:flex flex-col">
-              <span className="font-bold text-lg leading-tight text-gray-900">
+            <div className="flex flex-col">
+              <span className="font-bold text-sm md:text-lg leading-tight text-gray-900">
                 City of San Pedro
               </span>
-              <span className="text-sm text-gray-600">Laguna, Philippines</span>
+              <span className="text-xs md:text-sm text-gray-600">Laguna, Philippines</span>
             </div>
           </Link>
 
@@ -85,25 +87,42 @@ export default function Header() {
           {/* Mobile Navigation */}
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="h-10 w-10">
+                <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col gap-4 mt-8">
+            <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0">
+              <SheetHeader className="border-b p-6 text-left">
+                <SheetTitle className="flex items-center gap-3">
+                  <Image
+                    src="/logo.png"
+                    alt="San Pedro Logo"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                  />
+                  <div>
+                    <div className="font-bold text-base text-gray-900">City of San Pedro</div>
+                    <div className="text-xs text-gray-600 font-normal">Laguna, Philippines</div>
+                  </div>
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-1 p-4">
                 {mainLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg font-medium text-gray-700 hover:text-green-700 transition-colors py-2"
+                    className="text-base font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 transition-colors py-3 px-4 rounded-lg"
                   >
                     {link.label}
                   </Link>
                 ))}
-                <Button asChild className="bg-green-700 hover:bg-green-800 mt-4">
-                  <Link href="/contact">Contact Us</Link>
-                </Button>
+                <div className="mt-4 px-4">
+                  <Button asChild className="bg-green-700 hover:bg-green-800 w-full">
+                    <Link href="/contact">Contact Us</Link>
+                  </Button>
+                </div>
               </nav>
             </SheetContent>
           </Sheet>

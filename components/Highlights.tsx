@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 import { Target, Heart, Leaf, TrendingUp } from "lucide-react";
 
 export default function Highlights() {
