@@ -1,0 +1,113 @@
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  FileText,
+  Building2,
+  Calendar,
+  Newspaper,
+  Users,
+  ClipboardList,
+  Phone,
+  Leaf,
+} from "lucide-react";
+
+const services = [
+  {
+    icon: FileText,
+    title: "Forms and Permits",
+    description: "Access and download various city forms and permit applications",
+    href: "/forms-permits",
+    color: "bg-blue-50 text-blue-700",
+  },
+  {
+    icon: Building2,
+    title: "City Executive Orders",
+    description: "View city resolutions and executive orders",
+    href: "/executive-orders",
+    color: "bg-purple-50 text-purple-700",
+  },
+  {
+    icon: Calendar,
+    title: "Events",
+    description: "Stay updated with upcoming city events and programs",
+    href: "/events",
+    color: "bg-orange-50 text-orange-700",
+  },
+  {
+    icon: Newspaper,
+    title: "City News",
+    description: "Latest news and announcements from the city government",
+    href: "/news",
+    color: "bg-green-50 text-green-700",
+  },
+  {
+    icon: Users,
+    title: "Directory",
+    description: "Find contact information for city departments and officials",
+    href: "/directory",
+    color: "bg-red-50 text-red-700",
+  },
+  {
+    icon: ClipboardList,
+    title: "Fund Utilization",
+    description: "Transparency reports on city budget and fund utilization",
+    href: "/fund-utilization",
+    color: "bg-teal-50 text-teal-700",
+  },
+  {
+    icon: Leaf,
+    title: "Green Card Program",
+    description: "Learn about San Pedro's environmental initiatives",
+    href: "/green-card",
+    color: "bg-emerald-50 text-emerald-700",
+  },
+  {
+    icon: Phone,
+    title: "Talk to Us",
+    description: "Get in touch with city hall and file concerns",
+    href: "/contact",
+    color: "bg-indigo-50 text-indigo-700",
+  },
+];
+
+export default function QuickLinks() {
+  return (
+    <section className="py-16 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Quick Access
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Find the services and information you need
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service) => {
+            const Icon = service.icon;
+            return (
+              <Link key={service.href} href={service.href} className="group">
+                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-gray-200">
+                  <CardContent className="p-6">
+                    <div
+                      className={`w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                    >
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
