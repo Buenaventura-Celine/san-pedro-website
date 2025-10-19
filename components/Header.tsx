@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
 import {
   Sheet,
   SheetContent,
@@ -11,6 +13,23 @@ import {
 } from "@/components/ui/sheet";
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  const headerOpacity = useTransform(scrollY, [0, 100], [0.95, 1]);
+  const headerShadow = useTransform(
+    scrollY,
+    [0, 100],
+    ["0px 0px 0px rgba(0,0,0,0)", "0px 4px 12px rgba(0,0,0,0.1)"]
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const mainLinks = [
     { href: "/about", label: "About" },
     { href: "/services", label: "Services" },
@@ -19,7 +38,15 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <motion.header
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80" : "bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60"
+      }`}
+      style={{
+        opacity: headerOpacity,
+        boxShadow: headerShadow as any
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           {/* Logo Section */}
@@ -82,6 +109,6 @@ export default function Header() {
           </Sheet>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

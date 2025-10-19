@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   const quickLinks = [
@@ -131,16 +134,18 @@ export default function Footer() {
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
-                  <a
+                  <motion.a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-9 h-9 rounded-full bg-gray-800 hover:bg-green-700 flex items-center justify-center transition-colors"
                     aria-label={social.label}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <Icon className="h-4 w-4" />
-                  </a>
+                  </motion.a>
                 );
               })}
             </div>

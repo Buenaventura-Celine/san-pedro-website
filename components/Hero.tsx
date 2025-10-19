@@ -1,6 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
@@ -14,20 +17,40 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block mb-4 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-            <p className="text-sm font-medium">Official Government Website</p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-4 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
+          >
+            <p className="text-sm font-medium">Reavmp of the Official Government Website</p>
+          </motion.div>
 
-          <h1 className="font-bold text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-bold text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight"
+          >
             Welcome to the
             <span className="block mt-2 text-green-200">City of San Pedro</span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-lg md:text-xl text-green-50 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-lg md:text-xl text-green-50 mb-10 max-w-2xl mx-auto leading-relaxed"
+          >
             Building a progressive, sustainable, and inclusive community for all residents of San Pedro, Laguna.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
             <Button
               asChild
               size="lg"
@@ -46,7 +69,7 @@ export default function Hero() {
             >
               <Link href="/about">Learn More</Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
